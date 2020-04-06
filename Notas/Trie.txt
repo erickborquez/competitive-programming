@@ -1,0 +1,28 @@
+Es una estructura de datos similar a un arbol que almacena caracteres.
+Se asemeja a un arbol. Tiene nodos y aristas, es un DAG por lo que no tiene ciclos y esta rooteado.
+
+La estructura del trie consiste en que cada arista va a tener el numero de hijos igual 
+a la cantidad de caracteresen nuestro alfabeto
+
+
+///Prefijo
+Un prefijo es un substring que siempre inicia antes del primer caracter, o sea que tome en cuenta
+el primer caracter
+Los prefijos de la palabara ACABA son, [],  A, AC, ACA, ACAB, ACABA
+
+El trie tiene dos operaciones principales, insertar y buscar
+
+La cantidad de nodos que tiene el trie en caso de que ninguna palabara
+comparta ningun prefijo es la sumatoria de la longitud de las palabras
+
+La complejidad de la busqueda es o(n)
+La complejidad de la insercion es o(n)
+
+struct trie:
+  bool fin
+  int child[alhpa]
+
+Lo que se guarda en child es el label del nodo que te va a llevar 
+a ese prefijo
+
+Code chef query on strings

@@ -1,0 +1,38 @@
+while( l + 1 < r){
+  mid = (l + r) / 2;
+  if(v[mid] == x) break;
+  if(v[mid] < x) l = mid;
+  else r = mid;
+}
+
+int p = 0;
+for(int pot = v.size(); pot > 0; pot =/ 2){
+  while(p + pot < v.size() && v[p + pot] <= x) p += pot;
+}
+if(v[p] == x) // Entonces si existe
+
+binary_search(v.begin(),v.end(), x) // Regresa un boleano si existe el elemento
+
+C. Maximum median
+E. weakness and poorness
+
+Casos cuando tu respeuesta tenga que tener decimales
+
+eps = 1e-7
+while((l-r) > eps){
+  double m = (r - l ) 2.0;
+}
+
+while((r-l) >2){
+  m1 = l + (r - l) / 3;
+  m2 = r - (r - l) / 3;
+  r1 = f(m1);
+  r2 = f(m2);
+  if(r2 < r1)  l = r1;
+  else r = r2;
+}
+
+....
+thxmk
+
+#define deb(x) cout<#x": "<<(x)<<endl;

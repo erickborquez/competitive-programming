@@ -1,0 +1,43 @@
+Euler tour
+Para hacer e tour de euler se utiliza una bfs visitando primero el primer nodo,
+luego se va a visitar al hijo izquierdo del nodo, luego cuando el hijo no tiene mas hijos 
+se vuelve a visitar al nodo a la derecha del primer nodo visitado, entonces cuando se visitan 
+todos los nodos del otro hijo se visita al padre del primer nodo hijo.
+Ejemplo 1,2,5,2,6,2,1,3,1,4,7,4,1
+Los nodos hoja solo aparecen una vez.
+
+El lca nos dice cual es el ancenstro comun que tiene la altura minima entre los dos nodos.
+
+
+Tenemos que guardar la primera apricion de los nodos en el tour de euler.
+Ejemplo 
+euler = 1,2,5,2,6,2,1,3,1,4,7,4,1
+first 1-1, 2-2, 3-8, 4-10, 5-3, 6-5, 7-11 
+luego para saber el lca tenemos que encontrar el nodo que tenga menor altura entre
+los elementos que se encuentran entre la primera aparicion de ambos en el euler tour
+Luego podemos hacer un segment tree para poder tener la altura minima, este se construye 
+sobre el euler tour
+
+Problemas: 
+SPoj, LCA - Lowst common ancenstor
+
+para construir el grafo
+
+vector<vector int>> g(n);
+forn(i,n){
+  int k;
+  cin>>k;
+  for(j,k)
+  cin>>c;
+  g[i].pb(c);
+}
+
+// en el segment tree
+if l == r
+st[u] = euler[i];
+
+else {
+  if h[st[left]] < h[st[right]]
+  st[u] = st[left];
+  else st[u] = st[right];
+}

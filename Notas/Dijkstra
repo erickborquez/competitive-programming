@@ -1,0 +1,68 @@
+Lo que hace dijkstra es que te calcula las distancias mas cortas en grafo
+comenzando en un nodo suponiend que las aristas tienen peso
+
+Hacemos un vector con todas las distancias desde el nodo inicial.
+El primer nodo se marca con un 0, todas las demas se inicializan con un
+infinito, porque queremos minizar la distancia.
+
+Desde el primer nodo vemos las distancias a los nodos adyacentes, y si la
+distancia que nos toma llegar es mejor que la que tenia antes, realizamos el mismo proceso
+desde ese nodo.
+
+El orden en el que trabaja dijkstra no es una bfs normal donde metemos cosas en una cola, 
+siempre tomamos el nodo que tenga menor distancia en ese momento.
+
+
+
+ii => pair<int,int>;
+vector<ii>adj[N];
+priority_queue<ii, vector<ii>,greater<ii>> q;
+
+q.push({0,start});
+vector<int> best(n, INF);
+while(!q.empty()){
+  auto u = q.top();
+  q.pop();
+  if(u.f < best[b.S]) continue;
+  for(auto v : adj[u.S]){
+     if(u.f + v.s < best[v.f]){
+      q.push({u.f + v.s, v.f});
+      best[v.f] = u.f + v.s;
+    }
+  }
+}
+
+
+Cuando tenemos ciclos negativos tenemos que usar
+-- Bellman ford --
+
+bool yes = true;
+while(yes) {
+  yes = false;
+  for(auto e : edges){
+    if(best[e.s] + e.val < best[e.e]){
+      best[e.e] = best[e.s] + e.val;
+      yes = true;
+    }
+  }
+}
+
+bool yes = true;
+int x = -1;
+for(int i (0); i < n; i++){
+  x = -1;
+  for(auto e : edges){
+      if(best[e.s] + e.val < best[e.e]){
+      best[e.e] = best[e.s] + e.val;
+      x = e.e;
+      }
+  }
+}
+if(x != -1) cout<<"Ciclo negativo"<<ENDL;
+
+
+<--- NOTA --->
+Para saber cual es el camino que se tomo en cada nodo, solo
+se tiene que guardar cual es el padre directo de cada nodo cada vez
+que se actualiza (esto se hace en otro vector) y luego se hace una
+regresion en ese nodo.
