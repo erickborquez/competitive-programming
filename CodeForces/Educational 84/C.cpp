@@ -21,5 +21,46 @@ using namespace std;
 int main()
 {
   IO;
+  int n, m, k;
+  cin >> n >> m >> k;
+  vector<pii> ini(k), to(k);
+  FOR(i, 0, k)
+  {
+    cin >> ini[i].F >> ini[i].S;
+  }
+  FOR(i, 0, k)
+  {
+    cin >> ini[i].F >> ini[i].S;
+  }
+  int moves = n + m + n * m - 3;
+  cout << moves << ENDL;
+  FOR(i, 1, m)
+  {
+    cout << "L";
+  }
+  FOR(i, 1, n)
+  {
+    cout << "U";
+  }
+  FOR(i, 0, n)
+  {
+    if (i != 0)
+      cout << "D";
+    if (i % 2 == 0)
+    {
+      FOR(i, 1, m)
+      {
+        cout << "R";
+      }
+    }
+    else
+    {
+      FOR(i, 1, m)
+      {
+        cout << "L";
+      }
+    }
+  }
+  cout << ENDL;
   return 0;
 }

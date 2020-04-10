@@ -21,5 +21,29 @@ using namespace std;
 int main()
 {
   IO;
+  lli t, n, k;
+  cin >> t;
+  while (t--)
+  {
+    cin >> n >> k;
+    if (n >= k)
+    {
+      if (n % 2 == k % 2)
+      {
+        lli total = k * k;
+        if (total > n)
+          cout
+              << "NO" << ENDL;
+        else
+          cout << "YES" << ENDL;
+      }
+      else
+        cout << "NO" << ENDL;
+    }
+    else
+    {
+      cout << "NO" << ENDL;
+    }
+  }
   return 0;
 }
