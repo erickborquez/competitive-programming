@@ -1,0 +1,32 @@
+Es un algoritmo que te computa todas las distancias minimas de todos contra todos en una matriz
+de adyacencia
+La complejidad es o(n^3), asi que solo srive cuando la cantidad de nodos son pocos
+Funciona haciendo una dp donde se guardan las distancias minimas entre los nodo sintermedios
+
+Por ejemplo la matriz de adyacencia inicial de la dp seria
+1: 0 1 2 INF
+2: 1 0 INF 1
+3: 2 INF 0 INF
+4: INF 1 INF 0
+
+Si u = v, entonces se pone un cero porque ya estas en el mismo nodo
+Si no, pones un infinito porque no puedes llegar.
+
+
+int g[N][N];
+int dist[N][N];
+
+FOR(k,1,n + 1){
+  FOR(u, 1, n + 1){
+    FOR(v,1, n + 1)
+      dist[u][v] = min(dist[u][v], dist[u][k] - dist[k][v]);
+  }
+}
+
+queries offline
+struct query{
+  int u,v,etc;
+  int i; // donde i es el tiempo donde fue preguntado;
+}
+
+interplanenter problem 
