@@ -52,7 +52,7 @@ int main()
     int pos = 0;
     for (int acc = s; acc > 0; acc /= 2)
     {
-      if ()
+      if (best[pos + acc][coin.F]
     }
   }
   cout << total << ENDL;

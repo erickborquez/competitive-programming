@@ -1,0 +1,5 @@
+Memoizacion
+Es memoriar respuestas para no tener que volver a calcularlas. Hay muchas respuestas que podemos memoizar 
+como los primeros n numeros, por ejemplo 1, 3, 6 , 10, 15
+
+LIS = Longest increasing sequence
