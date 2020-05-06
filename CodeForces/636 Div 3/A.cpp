@@ -1,9 +1,10 @@
+
 #include <bits/stdc++.h>
 #define ENDL '\n'
 #define deb(u) cout << #u " : " << (u) << ENDL;
 #define deba(alias, u) cout << alias << ": " << (u) << ENDL;
 #define debp(u, v) cout << u << " : " << v << ENDL;
-#define pb push_back
+#define pb pus_back
 #define F first
 #define S second
 #define lli long long
@@ -21,21 +22,16 @@ using namespace std;
 int main()
 {
   IO;
-  int n;
-  cin >> n;
-  vector<int> v(n);
-  FOR(i, 0, n)
-  cin >> v[i];
-  FOR(i, 0, pow(2, n))
+  int t;
+  cin >> t;
+  while (t--)
   {
-    FOR(j, 0, n)
-    {
-      if (i & 1 << j)
-      {
-        cout << v[j];
-      }
-      cout << ENDL;
-    }
+    lli n;
+    cin >> n;
+    lli start = 3;
+    while ((n % start) != 0)
+      start = start * 2 + 1;
+    cout << n / start << ENDL;
   }
   return 0;
 }

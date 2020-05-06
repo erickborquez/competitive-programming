@@ -10,6 +10,7 @@
 #define pii pair<int, int>
 #define pll pair<lli, lli>
 #define ALL(a) (a).begin(), (a).end()
+#define ALLR(a) (a).rbegin(), (a).rend()
 #define FOR(i, a, n) for (int i = (a); i < (n); ++i)
 #define FORN(i, a, n) for (int i = (a - 1); i >= n; --i)
 #define IO                          \

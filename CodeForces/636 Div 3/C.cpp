@@ -16,26 +16,46 @@
   ios_base::sync_with_stdio(false); \
   cin.tie(0);                       \
   cout.tie(0)
+#define INF -2000000000
 using namespace std;
 
 int main()
 {
   IO;
-  int n;
-  cin >> n;
-  vector<int> v(n);
-  FOR(i, 0, n)
-  cin >> v[i];
-  FOR(i, 0, pow(2, n))
+  int t;
+  cin >> t;
+  while (t--)
   {
-    FOR(j, 0, n)
+    int n;
+    cin >> n;
+    vector<lli> v(n);
+    FOR(i, 0, n)
     {
-      if (i & 1 << j)
-      {
-        cout << v[j];
-      }
-      cout << ENDL;
+      cin >> v[i];
     }
+    bool pos = v[0] > 0;
+    lli best = INF;
+    lli total = 0;
+    FOR(i, 0, n)
+    {
+      if (pos && v[i] < 0)
+      {
+        pos = false;
+        total += best;
+        best = v[i];
+        continue;
+      }
+      else if (!pos && v[i] > 0)
+      {
+        pos = true;
+        total += best;
+        best = v[i];
+        continue;
+      }
+      best = max(best, v[i]);
+    }
+    total += best;
+    cout << total << ENDL;
   }
   return 0;
 }

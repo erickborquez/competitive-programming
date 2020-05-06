@@ -21,21 +21,38 @@ using namespace std;
 int main()
 {
   IO;
-  int n;
-  cin >> n;
+  int n, base;
+  cin >> n >> base;
+  base++;
   vector<int> v(n);
   FOR(i, 0, n)
   cin >> v[i];
-  FOR(i, 0, pow(2, n))
+
+  set<vector<int>> st;
+  FOR(i, 0, pow(base, n))
   {
-    FOR(j, 0, n)
+    int num = i;
+    int count = 0;
+    while (num > 0)
     {
-      if (i & 1 << j)
-      {
-        cout << v[j];
-      }
-      cout << ENDL;
+      int amount = num % base;
+      num /= base;
+      FOR(k, 0, amount)
+      cout << v[count] << " ";
+      /// En lugar de imprimirklos lo meten en un vector
+      /// Luego lo ordenan y lo meten en un set
+      count++;
     }
+    cout << ENDL;
   }
+
+  // Y al final solo tienen que imprimir las cosas en el set
+  // for (auto e : st)
+  // {
+  //   for (auto p : e)
+  //     cout << p << " ";
+  //   cout << ENDL;
+  // }
+
   return 0;
 }

@@ -3,7 +3,7 @@
 #define deb(u) cout << #u " : " << (u) << ENDL;
 #define deba(alias, u) cout << alias << ": " << (u) << ENDL;
 #define debp(u, v) cout << u << " : " << v << ENDL;
-#define pb push_back
+#define pb pus_back
 #define F first
 #define S second
 #define lli long long
@@ -21,21 +21,35 @@ using namespace std;
 int main()
 {
   IO;
-  int n;
-  cin >> n;
-  vector<int> v(n);
-  FOR(i, 0, n)
-  cin >> v[i];
-  FOR(i, 0, pow(2, n))
+  int t;
+  cin >> t;
+  while (t--)
   {
-    FOR(j, 0, n)
+    int n;
+    cin >> n;
+    if ((n / 2) % 2 == 1)
     {
-      if (i & 1 << j)
-      {
-        cout << v[j];
-      }
-      cout << ENDL;
+      cout << "NO" << ENDL;
+      continue;
     }
+    vector<int> arr(n);
+    bool flag = false;
+    FOR(i, 0, n / 2)
+    {
+      arr[i] = i * 4 + 2;
+      if (flag)
+      {
+        arr[n / 2 + i] = i * 4 - 1 + 2;
+      }
+      else
+        arr[n / 2 + i] = i * 4 + 1 + 2;
+      flag = !flag;
+    }
+
+    cout << "YES" << ENDL;
+    for (auto e : arr)
+      cout << e << " ";
+    cout << ENDL;
   }
   return 0;
 }

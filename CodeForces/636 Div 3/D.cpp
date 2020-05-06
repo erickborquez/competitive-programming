@@ -10,6 +10,7 @@
 #define pii pair<int, int>
 #define pll pair<lli, lli>
 #define ALL(a) (a).begin(), (a).end()
+#define ALLR(a) (a).rbegin(), (a).rend()
 #define FOR(i, a, n) for (int i = (a); i < (n); ++i)
 #define FORN(i, a, n) for (int i = (a - 1); i >= n; --i)
 #define IO                          \
@@ -21,21 +22,23 @@ using namespace std;
 int main()
 {
   IO;
-  int n;
-  cin >> n;
-  vector<int> v(n);
-  FOR(i, 0, n)
-  cin >> v[i];
-  FOR(i, 0, pow(2, n))
+  int t;
+  cin >> t;
+  while (t--)
   {
-    FOR(j, 0, n)
+    int n, k;
+    cin >> n >> k;
+    vector<lli> v(n);
+    map<int, int> sum;
+    FOR(i, 0, n)
     {
-      if (i & 1 << j)
-      {
-        cout << v[j];
-      }
-      cout << ENDL;
+      cin >> v[i];
     }
+    FOR(i, 0, n / 2)
+    sum[v[i] + v[n / 2 + i]]++;
+    for (auto p : sum)
+      debp(p.F, p.S);
+    cout << "---" << ENDL;
   }
   return 0;
 }
