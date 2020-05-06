@@ -1,0 +1,73 @@
+Lo que hace la dp de corte es ir avanzando por los estados de tu dp
+
+
+/// Si tienes n digitos, de cuantas formas uedes generar un numero
+/// Que cada uno de sus digitos sean entre 0 y 9
+int dfs(int pos){
+  if(pos === n) return 1;
+  int ans = dp[pos];
+  if(ans != -1){
+    ans = 0;
+    FOR(i,0,10) 
+      ans+=(dfs, pos + 1);
+    dp[pos]=ans;
+  }
+  return ans;
+}
+
+
+/// Tienes que elegir un numero de n digitos donde cada uno de los digitos
+/// Sea divisible por todos los digitos anteriores
+
+lli dfs(lli pos = 0; lli mask = 0){
+  if(i == n ) return 1;
+  ///lli ans = 0;
+  ans = dp[pos][mask];
+  if(ans == -1) {
+    if(i == 0){
+      FOR(i,1,9){
+        lli nmask = 1;
+        for(k,j,9) 
+          if(k%i == 0)
+            nmask = nmask | (1 <<k);
+          ans += dfs(pos + 1,nmask ) % MOD;
+      }
+    } else{
+      for(i,0,9){
+        if(mask & (1<<i)){
+          lli nmask = mask;
+          for(j,i,9) 
+            if(j % i) 
+              mask |= j;
+            ans += dfs(pos + 1, nmask) % MOD;
+        }
+      }
+    }
+    dp[pos][mask] = ans;
+  }
+  return ans;
+}
+
+/// Si te dan un numero mayor a 100 no va a entrar porque como el numero mas grande es 
+/// 1e4 entonces la suma maxima de sus digitos es 90, asi que uno mayor a 90 dara 0
+
+/// En lugar de hacer la solucion que vaya desde 
+/// A hasta B podemos hacer desde 0 hasta B menos la dfs hasta el a - 1;
+
+
+/// Primero tienes que leer el numero como string y lo inviertes;
+
+lli dp[pos][modd][modn]; // dp[10][100][100]
+dfs(lli pos, lli modd, lli modn, bool em = false){
+  if(pos < 0) return modd==0 && modn == 0;
+  lli ans = dp[pos][modd][modn];
+  if(ans == -1){
+    ans = 0;
+    for(i,0 em ? 9 : num[pos]){
+      ans+=dfs(p-1, (modd + i) % k, (modn + i * 10^pos) % k, emm || i < num [pos] )
+    }
+  }
+  return ans;
+}
+
+result = dfs(b) - dfs(a - 1)

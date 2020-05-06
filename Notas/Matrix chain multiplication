@@ -1,0 +1,36 @@
+Es una multiplicacion de matrices en cadena
+Es operacion de matrices en la menor cantidad de operaciones posibles
+Por ejemplo tenemos una matriz a de 10 x 100, una b 100 x 5, c 5 x 50;
+
+Para estos problemas suponemos que no podemos reordenar los elementos de las matrices
+
+Si tienes 3 matrices ABC puedes tomar (A * B) * C o A * ( B * C) y te dara una cantidad 
+de operaciones diferentes
+
+Para cada una de las matrices sabemos que tenemos x, y 
+La respuesta o solve para la matriz seria
+
+solve(i,j) =>dp[i][j] return 
+            dp[i][j]  = Xa* Ya * Yb  iff i + 1 == j
+            dp[i][j] = min(solve(i,k) + solve(k + 1, j) + Xi * Yk Yj)
+
+
+
+// SPOJ PROBLEM MIXTURES
+
+
+lli sum[n][n]; => sum[i][j] => suma acumulada desde i hasta j
+
+lli mcm(int l, int r){
+  /// Si estoy parado en el mismo elemento no lo puedo parar mas
+  if(l == r) return 0;
+  else if (l + r == 0) return ans=v[l] * v[r];
+  else{
+    ans = INF;
+    FOR(k, l, r){
+      ans = min(ans, mcm(l,k) + mxm(k + 1, r) + sum[l,k] * sum[k + 1, r]);
+    }  
+  }
+}
+
+// La primera vez que llamas lml lo llamas desde 0 a n, o sea todo el mcm
