@@ -31,7 +31,7 @@ lli dfs(lli pos = 0; lli mask = 0){
           if(k%i == 0)
             nmask = nmask | (1 <<k);
           ans += dfs(pos + 1,nmask ) % MOD;
-      }
+      } 
     } else{
       for(i,0,9){
         if(mask & (1<<i)){
