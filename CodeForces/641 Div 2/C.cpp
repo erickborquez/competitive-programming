@@ -48,11 +48,6 @@ int main()
   map<int, vector<int>> divisors;
   FOR(i, 0, n)
   cin >> v[i];
-  if (n == 1)
-  {
-    cout << v[0] << ENDL;
-    return 0;
-  }
 
   FOR(i, 0, n)
   {
@@ -79,7 +74,7 @@ int main()
     if (pv.S.size() >= n - 1)
     {
       sort(ALL(pv.S));
-      int pot = pv.S[1];
+      int pot = pv.S[pv.S.size() - n + 1];
       FOR(i, 0, pot)
       res *= pv.F;
     }
