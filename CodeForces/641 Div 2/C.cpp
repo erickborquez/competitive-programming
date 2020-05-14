@@ -45,7 +45,7 @@ int main()
   cin >> n;
   vector<lli> v(n);
 
-  map<int, vector<int>> divisors;
+  map<int, pii> divisors;
   FOR(i, 0, n)
   cin >> v[i];
 
@@ -60,7 +60,7 @@ int main()
       while (num % p == 0)
       {
         num /= p;
-        newMap[p]++;
+        newMap[p] = newMap[p];
       }
     }
     for (auto pi : newMap)
