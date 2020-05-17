@@ -19,20 +19,22 @@
   cout.tie(0)
 using namespace std;
 
-#define INF 200000
+#define INF 300000
 
 vector<lli> primes;
-bool isNotPrime[INF];
+vector<int> divisor(INF, -1);
 
 void initCriba()
 {
   for (lli i(2); i < INF; i++)
   {
-    if (!isNotPrime[i])
+    if (divisor[i] == -1)
     {
       primes.pb(i);
-      for (lli j = i; j * i < INF; j++)
-        isNotPrime[j * i] = true;
+      for (lli j = 1; j * i < INF; j++)
+      {
+        divisor[j * i] = i;
+      }
     }
   }
 }
@@ -40,44 +42,41 @@ void initCriba()
 int main()
 {
   IO;
-  int n;
   initCriba();
+  lli n;
   cin >> n;
   vector<lli> v(n);
-
-  map<int, pii> divisors;
+  map<lli, vector<lli>> m;
   FOR(i, 0, n)
   cin >> v[i];
-
-  FOR(i, 0, n)
+  for (auto num : v)
   {
-    lli num = v[i];
-    map<int, int> newMap;
-    for (auto p : primes)
+    map<lli, lli> local;
+    // deb(num);
+    while (num != 1)
     {
-      if (num == 1)
-        break;
-      while (num % p == 0)
-      {
-        num /= p;
-        newMap[p] = newMap[p];
-      }
+      lli prime = divisor[num];
+      local[prime]++;
+      num /= prime;
     }
-    for (auto pi : newMap)
+    for (auto p : local)
     {
-      divisors[pi.F].pb(pi.S);
+      m[p.F].pb(p.S);
+      // debp(p.F, p.S);
     }
   }
   lli res = 1;
-  for (auto pv : divisors)
+  for (auto p : m)
   {
-    if (pv.S.size() >= n - 1)
-    {
-      sort(ALL(pv.S));
-      int pot = pv.S[pv.S.size() - n + 1];
-      FOR(i, 0, pot)
-      res *= pv.F;
-    }
+    // debp(p.F, p.S.size());
+    sort(ALL(p.S));
+    lli times = 0;
+    if (p.S.size() == n)
+      times = p.S[1];
+    else if (p.S.size() == n - 1)
+      times = p.S[0];
+    FOR(i, 0, times)
+    res *= p.F;
   }
   cout << res << ENDL;
 
