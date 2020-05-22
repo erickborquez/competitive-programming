@@ -1,0 +1,3 @@
+Coeficiente combinatorio
+Cuando se ponene los parentesis donde hay un numero sobre otro, siento n >=m && m >= 0
+n! / (m!*(n - m)!)
