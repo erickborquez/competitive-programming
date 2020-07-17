@@ -19,52 +19,39 @@
   cout.tie(0)
 using namespace std;
 
+vector<vector<int>> tree;
+
+pii node = {-1, -1};
+void dfs(int from, int dist, int parent)
+{
+  if (dist > node.F)
+    node = make_pair(dist, from);
+  for (auto n : tree[from])
+  {
+    if (parent == n)
+      continue;
+    dfs(n, dist + 1, from);
+  }
+}
+
 int main()
 {
   IO;
   int n;
   cin >> n;
-  vector<int> nums(n);
-  vector<pii> lis(n);
-  FOR(i, 0, n)
-  cin >> nums[i];
-
-  FOR(i, 0, n)
+  tree = vector<vector<int>>(n);
+  FOR(i, 0, n - 1)
   {
-    pii best = make_pair(0, i);
-    FOR(j, 0, i)
-    {
-      if (nums[i] >= nums[j])
-      {
-        if (lis[j].F > best.F)
-        {
-          best = make_pair(lis[j].F, j);
-        }
-      }
-    }
-    lis[i] = make_pair(best.F + 1, best.S);
+    int from, to;
+    cin >> from >> to;
+    tree[from].pb(to);
+    tree[to].pb(from);
   }
-  pii best = make_pair(-1, -1);
-  FOR(i, 0, n)
-  {
-    if (lis[i].F > best.F)
-    {
-      best = lis[i];
-      best.S = i;
-    }
-  }
-  vector<int> path;
-  while (true)
-  {
-    path.pb(best.S);
-    if (lis[best.S].S == best.S)
-      break;
-    best = lis[best.S];
-  }
-  reverse(ALL(path));
-  cout << path.size() << ENDL;
-  for (auto e : path)
-    cout << e + 1 << ENDL;
+  dfs(0, 0, -1);
+  // deb(node.S);
+  dfs(node.S, 0, -1);
+  // deb(node.S);
+  cout << node.F << ENDL;
 
   return 0;
 }

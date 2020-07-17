@@ -22,48 +22,23 @@ using namespace std;
 int main()
 {
   IO;
-  long double n, m;
-  cin >> n >> m;
-  vector<vector<vector<long double>>> dp(n + 1, vector<vector<long double>>(n + 1, vector<long double>(n + 1, 1.0)));
-  vector<long double> ans(n + 1, 1.0);
-  FOR(i, 0, m)
+  int t;
+  cin >> t;
+  while (t--)
   {
-    int a, b;
-    long double p;
-    cin >> a >> b >> p;
-    vector<vector<long double>> damage = dp[b];
-    long double prob = 1.0;
+    int n;
+    cin >> n;
+    vector<int> v(n + 1);
+    FOR(i, 0, n)
+    cin >> v[i + 1];
+    sort(ALL(v));
+    int best = 1;
     FOR(i, 1, n + 1)
     {
-      prob *= damage[i][a];
+      if (v[i] <= i)
+        best = i + 1;
     }
-    ans[b] -= ans[b] * prob * p;
-
-    FOR(i, 1, n + 1)
-    {
-      if (i != b)
-      {
-        dp[i][a][b] *= 1.0 - p;
-      }
-    }
-  }
-  FOR(i, 1, n + 1)
-  {
-    cout << fixed << setprecision(12) << ans[i] << ENDL;
+    cout << best << ENDL;
   }
   return 0;
 }
-/*
-
-eso que significa jajaja
-0.77-(0.77*0.99*0.01)
-
-////
-2 3
-1 2 0.23
-2 1 0.99
-1 2 0.99
-
-0.2377000000
-0.7623770000   
-*/

@@ -28,7 +28,7 @@ lli mcm(int l, int r){
   else{
     ans = INF;
     FOR(k, l, r){
-      ans = min(ans, mcm(l,k) + mxm(k + 1, r) + sum[l,k] * sum[k + 1, r]);
+      ans = min(ans, mcm(l,k)  + mxm(k + 1, r) + sum[l,k] * sum[k + 1, r]);
     }  
   }
 }

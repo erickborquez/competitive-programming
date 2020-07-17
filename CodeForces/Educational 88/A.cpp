@@ -22,49 +22,23 @@ using namespace std;
 int main()
 {
   IO;
-  int n;
-  cin >> n;
-  vector<int> nums(n);
-  vector<pii> lis(n);
-  FOR(i, 0, n)
-  cin >> nums[i];
-
-  FOR(i, 0, n)
+  int t;
+  cin >> t;
+  while (t--)
   {
-    pii best = make_pair(0, i);
-    FOR(j, 0, i)
+    int n, m, k;
+    cin >> n >> m >> k;
+    int c = n / k;
+    if (c >= m)
+      cout << m << ENDL;
+    else
     {
-      if (nums[i] >= nums[j])
-      {
-        if (lis[j].F > best.F)
-        {
-          best = make_pair(lis[j].F, j);
-        }
-      }
-    }
-    lis[i] = make_pair(best.F + 1, best.S);
-  }
-  pii best = make_pair(-1, -1);
-  FOR(i, 0, n)
-  {
-    if (lis[i].F > best.F)
-    {
-      best = lis[i];
-      best.S = i;
+      int total = c;
+      total -= (m - c) / (k - 1);
+      if ((m - c) % (k - 1) > 0)
+        total--;
+      cout << total << ENDL;
     }
   }
-  vector<int> path;
-  while (true)
-  {
-    path.pb(best.S);
-    if (lis[best.S].S == best.S)
-      break;
-    best = lis[best.S];
-  }
-  reverse(ALL(path));
-  cout << path.size() << ENDL;
-  for (auto e : path)
-    cout << e + 1 << ENDL;
-
   return 0;
 }
