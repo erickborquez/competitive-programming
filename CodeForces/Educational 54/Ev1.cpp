@@ -19,55 +19,81 @@
   cout.tie(0)
 using namespace std;
 
-int MX = 3 * 1e5 + 1;
-int n, m;
-
 vector<vector<int>> t;
-vector<lli> ans;
+vector<lli> v;
+vector<int> h;
 vector<vector<pair<int, lli>>> q;
-vector<lli> acc(MX + 10, 0);
+int mxHeight;
 
-void dfs(int u, int p, int depth, lli k)
+void dfs(int u, int p, map<int, lli> &vc)
 {
-  k += acc[depth];
-  // deb(u);
-  for (auto e : q[u])
+  v[u] = v[p];
+  auto left = vc.lower_bound(h[u] - 1);
+  auto right = vc.upper_bound(h[u] - 1);
+  while (left != right)
   {
-    k += e.S;
-    acc[min(MX, depth + e.F + 1)] += -e.S;
+    v[u] -= (*left).S;
+    left++;
   }
-  ans[u] = k;
-  for (auto el : t[u])
-    if (el != p)
-      dfs(el, u, depth + 1, k);
-  for (auto e : q[u])
-    acc[min(MX, depth + e.F + 1)] += e.S;
+  for (auto k : q[u])
+  {
+    vc[min(mxHeight, h[u] + k.F)] += k.S;
+    v[u] += k.S;
+  }
+  for (auto k : t[u])
+  {
+    if (k != p)
+      dfs(k, u, vc);
+  }
+  for (auto k : q[u])
+  {
+    int pos = min(mxHeight, h[u] + k.F);
+    vc[pos] -= k.S;
+    if (vc[pos] == 0)
+      vc.erase(pos);
+  }
+}
+
+int getHeight(int u, int p)
+{
+  h[u] = h[p] + 1;
+  int mx = h[u];
+  for (auto k : t[u])
+    if (k != p)
+      mx = max(mx, getHeight(k, u));
+  return mx;
 }
 
 int main()
 {
   IO;
+  int n, m;
   cin >> n;
   t = vector<vector<int>>(n + 1);
+  v = vector<lli>(n + 1, 0);
+  h = vector<int>(n + 1, -1);
   q = vector<vector<pair<int, lli>>>(n + 1);
-  ans = vector<lli>(n + 1);
   FOR(i, 1, n)
   {
-    int a, b;
-    cin >> a >> b;
-    t[a].pb(b);
-    t[b].pb(a);
+    int from, to;
+    cin >> from >> to;
+    t[from].pb(to);
+    t[to].pb(from);
   }
   cin >> m;
+  lli u, d, x;
   FOR(i, 0, m)
   {
-    int u, d, x;
     cin >> u >> d >> x;
     q[u].pb({d, x});
   }
-  dfs(1, 1, 0, 0);
+  mxHeight = getHeight(1, 1);
+  map<int, lli> mp;
+  dfs(1, 1, mp);
   FOR(i, 1, n + 1)
-  cout << ans[i] << " ";
+  {
+    cout << v[i] << " ";
+  }
 
   return 0;
 }
