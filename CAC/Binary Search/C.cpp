@@ -19,36 +19,52 @@
   cout.tie(0)
 using namespace std;
 
+lli INF = 2 * 1e9;
+
+lli k;
+vector<lli> nums;
+
+bool ok(lli u)
+{
+  lli res = k;
+  // deb(res);
+  for (auto e : nums)
+  {
+    if (e < u)
+    {
+      res -= u - e;
+      // deb(u);
+      // debp(e, res);
+      if (res < 0)
+      {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
 int main()
 {
   IO;
   lli n;
-  cin >> n;
-  vector<lli> v(n + 1, 0), acc(n + 1, 0);
-  FOR(i, 1, n + 1)
+  cin >> n >> k;
+  vector<lli> v(n);
+  FOR(i, 0, n)
   {
     cin >> v[i];
   }
-  set<lli> st;
-  lli u = 1;
-  lli ans = 0;
-  st.emplace(0);
-  FOR(i, 1, n + 1)
+  sort(ALL(v));
+  FOR(i, n / 2, n)
   {
-    acc[i] = acc[i - 1] + v[i];
-    while (st.find(acc[i]) != st.end())
-    {
-      lli lg = i - u;
-      ans += lg;
-      st.erase(acc[i]);
-      u++;
-    }
-    st.emplace(acc[i]);
+    nums.pb(v[i]);
   }
-  FOR(i, u, n + 1)
+  lli ptr = 0;
+  for (lli i = INF; i > 0; i /= 2)
   {
-    ans += n - i + 1;
+    while (ok(ptr + i))
+      ptr += i;
   }
-  cout << ans << ENDL;
+  cout << ptr << ENDL;
   return 0;
 }

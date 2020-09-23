@@ -19,36 +19,33 @@
   cout.tie(0)
 using namespace std;
 
+int timeLeft;
+
+int sum(int u)
+{
+  return ((u * (u + 1)) / 2) * 5;
+}
+
+bool ok(int u)
+{
+  // deb(u);
+  // debp(sum(u), timeLeft);
+  return sum(u) <= timeLeft;
+}
+
 int main()
 {
   IO;
-  lli n;
-  cin >> n;
-  vector<lli> v(n + 1, 0), acc(n + 1, 0);
-  FOR(i, 1, n + 1)
+  int n, k;
+  cin >> n >> k;
+  timeLeft = 240 - k;
+  int ptr = 0;
+  for (int i = n; i > 0; i /= 2)
   {
-    cin >> v[i];
+    while (ok(ptr + i))
+      ptr += i;
   }
-  set<lli> st;
-  lli u = 1;
-  lli ans = 0;
-  st.emplace(0);
-  FOR(i, 1, n + 1)
-  {
-    acc[i] = acc[i - 1] + v[i];
-    while (st.find(acc[i]) != st.end())
-    {
-      lli lg = i - u;
-      ans += lg;
-      st.erase(acc[i]);
-      u++;
-    }
-    st.emplace(acc[i]);
-  }
-  FOR(i, u, n + 1)
-  {
-    ans += n - i + 1;
-  }
-  cout << ans << ENDL;
+  cout << min(ptr, n) << ENDL;
+
   return 0;
 }

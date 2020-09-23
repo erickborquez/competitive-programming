@@ -22,33 +22,23 @@ using namespace std;
 int main()
 {
   IO;
-  lli n;
-  cin >> n;
-  vector<lli> v(n + 1, 0), acc(n + 1, 0);
-  FOR(i, 1, n + 1)
+  int n, k;
+  cin >> n >> k;
+  vector<int> v(n);
+  FOR(i, 0, n)
+  cin >> v[i];
+  FOR(i, 0, k)
   {
-    cin >> v[i];
-  }
-  set<lli> st;
-  lli u = 1;
-  lli ans = 0;
-  st.emplace(0);
-  FOR(i, 1, n + 1)
-  {
-    acc[i] = acc[i - 1] + v[i];
-    while (st.find(acc[i]) != st.end())
+    int q;
+    cin >> q;
+    if (binary_search(ALL(v), q))
     {
-      lli lg = i - u;
-      ans += lg;
-      st.erase(acc[i]);
-      u++;
+      cout << "YES" << ENDL;
     }
-    st.emplace(acc[i]);
+    else
+    {
+      cout << "NO" << ENDL;
+    }
   }
-  FOR(i, u, n + 1)
-  {
-    ans += n - i + 1;
-  }
-  cout << ans << ENDL;
   return 0;
 }
