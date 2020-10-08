@@ -14,15 +14,15 @@
 #define ALLR(a) (a).rbegin(), (a).rend()
 #define FOR(i, a, n) for (int i = (a); i < (n); ++i)
 #define FORN(i, a, n) for (int i = (a - 1); i >= n; --i)
-#define IO                          \
-  ios_base::sync_with_stdio(false); \
-  cin.tie(0);                       \
-  cout.tie(0)
+#define IO                            \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(0);                       \
+    cout.tie(0)
 using namespace std;
 
 int main()
 {
-  IO;
+    IO;
 
-  return 0;
+    return 0;
 }
