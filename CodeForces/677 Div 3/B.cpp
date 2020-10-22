@@ -29,44 +29,23 @@ int main()
     {
         int n;
         cin >> n;
-        map<int, vector<int>> gangs;
+        int last = -1;
+        int ans = 0;
         FOR(i, 0, n)
         {
-            int g;
-            cin >> g;
-            gangs[g].pb(i + 1);
-        }
-        if (gangs.size() == 1)
-        {
-            cout << "NO" << ENDL;
-        }
-        else
-        {
-            vector<pair<int, vector<int>>> g;
-            for (auto p : gangs)
+            int book;
+            cin >> book;
+            if (book)
             {
-                g.pb(p);
-            }
-            cout << "YES" << ENDL;
-            FOR(i, 0, g.size())
-            {
-                int u, v;
-                if (i == g.size() - 1)
+                if (last != -1)
                 {
-                    u = 0;
-                    v = 1;
+                    ans += i - last - 1;
                 }
-                else
-                {
-                    u = i + 1;
-                    v = 0;
-                }
-                for (; v < g[i].S.size(); v++)
-                {
-                    cout << g[i].S[v] << " " << g[u].S[0] << ENDL;
-                }
+                last = i;
             }
         }
+        cout << ans << ENDL;
     }
+
     return 0;
 }
