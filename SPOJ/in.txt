@@ -1,0 +1,11 @@
+10 10
+find 1 5
+add 5 8
+add 6 2
+find 4 5
+find 4 6
+add 2 4
+find 2 6
+add 6 7
+find 1 6
+find 7 10
