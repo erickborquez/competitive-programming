@@ -1,0 +1,10 @@
+4 2
+AZ
+BZ
+XY
+MN
+4
+XN
+MY
+XY
+MN
