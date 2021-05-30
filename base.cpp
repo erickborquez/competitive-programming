@@ -1,8 +1,9 @@
 #include <bits/stdc++.h>
+#define DEBUG true
 #define ENDL '\n'
-#define deb(u) cout << #u " : " << (u) << ENDL;
-#define deba(alias, u) cout << alias << ": " << (u) << ENDL;
-#define debp(u, v) cout << u << " : " << v << ENDL;
+#define deb(u) if(DEBUG) cout << #u " : " << (u) << ENDL;
+#define deba(alias, u) if(DEBUG) cout << alias << ": " << (u) << ENDL;
+#define debp(u, v) if(DEBUG) cout << u << " : " << v << ENDL;
 #define pb push_back
 #define F first
 #define S second
@@ -23,6 +24,5 @@ using namespace std;
 int main()
 {
   IO;
-  cout << "hola" << ENDL;
   return 0;
 }
