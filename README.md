@@ -1,2 +1,2 @@
-# ICPC-Problems
-Here i will put all my solutions for different programming contests
+# Competitive Programming
+Repository containing all the solutions for different competitive programming contests
