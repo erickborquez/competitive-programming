@@ -10,7 +10,7 @@ export CP_TEMPLATE="$CP_DIR/template"
 export CP_BASE="$CP_DIR/base.cpp"
 
 # Generate the initial directory
-cp_generate() {
+cpg() {
     if [ -n "$1" ]
     then
         cp -r "$CP_TEMPLATE" "$1"
@@ -28,7 +28,7 @@ cp_generate() {
 }
 
 # Create file with the base file
-cp_new() {
+cpn() {
     if [ -n "$1" ]
     then
         cp  "$CP_BASE" "$1"
@@ -39,7 +39,7 @@ cp_new() {
 }
 
 # Compile the file and save the output
-cp(){
+cpc(){
     if [ -n "$1" ]
     then
 	g++ "$1" && ./a.out < in.txt > out.txt
