@@ -18,9 +18,9 @@ cpg() {
         echo "Template generated"
 	if [ -n "$2" ]
 	then
-	    cp_new "$2"
-        else
-            cp_new A.cpp
+	    cpn "$2"
+    else
+        cpn A.cpp
 	fi
     else
         echo "Specify directory"
