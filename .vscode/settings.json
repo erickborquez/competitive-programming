@@ -74,6 +74,8 @@
     "any": "cpp",
     "bit": "cpp",
     "variant": "cpp",
-    "queue": "cpp"
+    "queue": "cpp",
+    "filesystem": "cpp",
+    "ios": "cpp"
   }
 }
