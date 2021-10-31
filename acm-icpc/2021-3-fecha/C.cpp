@@ -31,5 +31,51 @@ using namespace std;
 int main()
 {
   IO;
+  ll b, l;
+  cin >> b >> l;
+  vector<ll> v(l);
+  b++;
+  ll acc = 0;
+  FOR(i, 0, l)
+  {
+    cin >> v[i];
+    if (i % 2)
+      acc = (acc - v[i]) % b;
+    else
+      acc = (acc + v[i]) % b;
+  }
+
+  if (acc % b == 0)
+  {
+    cout << "0 0" << ENDL;
+    return 0;
+  }
+
+  ll aRestar = (acc + b) % b;
+  ll aSumar = b - aRestar;
+
+  // deb(acc);
+  // debp(aSumar, aRestar);
+  FOR(i, 0, l)
+  {
+    if (i % 2 == 0)
+    {
+      if (v[i] >= aRestar)
+      {
+        cout << i + 1LL << " " << v[i] - aRestar;
+        return 0;
+      }
+    }
+    else
+    {
+      if (v[i] >= aSumar)
+      {
+        cout << i + 1LL << " " << v[i] - aSumar;
+        return 0;
+      }
+    }
+  }
+
+  cout << "-1 -1" << ENDL;
   return 0;
 }

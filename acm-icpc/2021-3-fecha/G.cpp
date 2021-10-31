@@ -28,8 +28,51 @@
   cout.tie(0)
 using namespace std;
 
+const ll MX = 1e17;
+vector<ll> fib;
+
+void calc()
+{
+  fib.pb(1);
+  fib.pb(2);
+  while (fib[fib.size() - 1] < MX)
+  {
+    fib.pb(fib[fib.size() - 1] + fib[fib.size() - 2]);
+  }
+}
+
 int main()
 {
   IO;
+  ll n;
+  calc();
+  cin >> n;
+  vector<ll> v;
+  for (ll i = fib.size() - 1; i > 0; i--)
+  {
+
+    while (n % fib[i] == 0)
+    {
+      v.pb(i);
+      n /= fib[i];
+    }
+  }
+
+  if (n != 1)
+  {
+    cout << "IMPOSSIBLE" << ENDL;
+    return 0;
+  }
+
+  for (auto e : v)
+  {
+    FOR(i, 0, e)
+    {
+      cout << "A";
+    }
+    cout << "B";
+  }
+  cout << ENDL;
+
   return 0;
 }
